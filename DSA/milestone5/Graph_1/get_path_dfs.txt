@@ -1,0 +1,64 @@
+import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+public class Solution {
+	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    
+    public static ArrayList<Integer> getPath(int[][] adj, int v1, int v2, ArrayList<Integer> list) {
+			boolean []visited = new boolean[adj.length];
+			return getPath(adj, visited, v1, v2, list);
+	}
+    
+	public static ArrayList<Integer> getPath(int[][] adj, boolean[]visited, int sI, int v2, ArrayList<Integer> list) {
+		// System.out.println(sI);
+        if(sI==v2) {
+            ArrayList<Integer> arr = new ArrayList<>();
+            arr.add(sI);
+            return arr;
+        }
+		visited[sI] = true;
+		int n = adj.length;
+		for(int i = 0; i<n; i++) {
+			if(adj[sI][i]==1 && !visited[i]) {
+				list = getPath(adj, visited, i, v2, list);
+                if(list!=null) {
+                	list.add(sI);
+                	return list;
+                }
+			}
+		}
+		return null;
+	}
+    
+	public static void main(String[] args) throws NumberFormatException, IOException {
+        
+        /* Write Your Code Here
+		 * Complete the Rest of the Program
+		 * You have to take input and print the output yourself
+		 */
+		String s[] = br.readLine().split(" ");
+        int n = Integer.parseInt(s[0]);
+        int adj[][] = new int[n][n];
+		int e = Integer.parseInt(s[1]);
+		for(int i = 0; i<e; i++) {
+			String str[] = br.readLine().split(" ");
+            int st = Integer.parseInt(str[0]);
+            int fin = Integer.parseInt(str[1]);
+			adj[st][fin] = 1;
+			adj[fin][st] = 1;
+		}
+        String val[] = br.readLine().split(" ");
+        int v1 = Integer.parseInt(val[0]);
+        int v2 = Integer.parseInt(val[1]);
+        ArrayList<Integer> list = new ArrayList<>();
+		list = getPath(adj, v1, v2, list);
+        // if(list.size()!=0) {
+        //     list.add(v1);
+        // }
+        if(list!=null)
+        for(int i = 0; i<list.size(); i++) {
+            System.out.print(list.get(i) + " ");
+        }
+	}
+}

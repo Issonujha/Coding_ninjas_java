@@ -1,0 +1,27 @@
+public class Solution {
+
+	public static int maxMoneyLooted(int[] houses) {
+		//Your code goes here
+        int i = 2;
+        return maxMoneyLooted(houses, i);
+	}
+    public static int maxMoneyLooted(int[] houses, int i) {
+        if(houses.length==0) {
+            return 0;
+        }
+        if(houses.length==1) {
+            return houses[0];
+        }
+        if(houses.length==2) {
+            return Math.max(houses[0], houses[1]);
+        }
+        int arr[] = new int[houses.length];
+        arr[0] = houses[0];
+        arr[1] = Math.max(houses[0], houses[1]);
+        for(; i<arr.length; i++) {
+            arr[i] = Math.max(houses[i] + arr[i-2], arr[i-1]);
+        }
+        return arr[arr.length-1];
+    }
+
+}

@@ -1,0 +1,16 @@
+
+public class Solution {
+
+	public static String reverseEachWord(String str) {
+		//Your code goes here
+        String word[] = str.split("\\s");
+        String reverseWord ="";
+        for(int i=0; i<word.length;i++) {
+            StringBuffer sb = new StringBuffer(word[i]);
+            sb.reverse();
+            reverseWord += sb + " ";
+        }
+        return reverseWord.trim();
+	}
+
+}

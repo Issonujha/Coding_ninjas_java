@@ -1,0 +1,65 @@
+public class solution {
+
+	// Return a 2D array that contains all the subsets which sum to k
+     public static int[][] help(int input[], int k, int si){
+       
+        if(si == input.length)
+        {
+             if(k==0){
+            int ans[][]=new int[1][0];
+            return ans;
+        }
+            else
+            {
+                return new int[0][0] ; 
+            }
+        }
+       
+        int [][]temp1= help(input, k-input[si], si+1);
+        int[][]temp2= help(input, k, si+1);
+        int[][] ans= new int[temp1.length+temp2.length][];
+        int s = 0;
+        for(int[] ele : temp1)
+        {
+            int[] arr = new int[ele.length + 1];
+            int t = 1;
+            arr[0] = input[si];  
+            for(int i : ele){
+                arr[t++] = i;}
+            ans[s++] = arr;
+        }
+         for(int[] ele : temp2) {
+            ans[s++] = ele;
+        }
+        int count = 0;
+        for(int[] arr : ans)
+        {
+            int sum = 0;
+            for(int ele : arr)
+            {
+                sum += ele;
+                
+            }
+            if(sum == k)
+                count++;
+        }
+        
+        int[][] finalAns = new int[count][];
+        int k1 = 0;
+        
+        for(int[] arr : ans)
+        {
+            int sum = 0;
+            for(int ele : arr)
+            {     sum += ele; }
+            if(sum == k)
+                finalAns[k1++] = arr;
+        }
+        return finalAns;
+    }
+	public static int[][] subsetsSumK(int input[], int k) {
+		// Write your code here
+       return help(input, k, 0);
+
+	}
+}

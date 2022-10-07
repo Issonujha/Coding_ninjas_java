@@ -1,0 +1,85 @@
+/*
+
+	Following is the Node class already written for the Linked List
+
+	class LinkedListNode<T> {
+    	T data;
+    	LinkedListNode<T> next;
+    
+    	public LinkedListNode(T data) {
+        	this.data = data;
+    	}
+	}
+
+*/
+
+public class Solution {
+	public static LinkedListNode<Integer> removeDuplicates(LinkedListNode<Integer> head) {
+		//Your code goes here
+        if(head==null) {
+            return head;
+        }
+        LinkedListNode<Integer> temp = head;
+        while(temp.next != null) {
+            if(temp.data.equals(temp.next.data)) {
+                temp.next=temp.next.next;
+            }
+            else{
+            temp = temp.next;
+            }
+        }
+        return head;
+	}
+
+}
+
+/*
+
+	Following is the Node class already written for the Linked List
+
+	class LinkedListNode<T> {
+    	T data;
+    	LinkedListNode<T> next;
+    
+    	public LinkedListNode(T data) {
+        	this.data = data;
+    	}
+	}
+
+*/
+
+// public class Solution {
+// 	public static void eliminate(LinkedListNode<Integer> head) {
+//         LinkedListNode<Integer> tail = head.next;
+//         while(head.data==tail.data) {
+//             // System.out.println("Hello");
+//             tail = tail.next;
+//             if(tail==null) {
+//                 head.next = null;
+//                 return;
+//             }
+//         }
+//         head.next = tail;
+//     }
+// 	public static LinkedListNode<Integer> removeDuplicates(LinkedListNode<Integer> head) {
+// 		//Your code goes here
+//         if(head==null) {
+//             return head;
+//         }
+//         LinkedListNode<Integer> temp = head;
+//         while(temp.next != null) {
+//             if(temp.data.equals(temp.next.data)) {
+//             	eliminate(temp);
+//                 temp = temp.next;
+//                 if(temp==null) {
+//                     break;
+//                 }
+//             }
+//             else{
+//             temp = temp.next;
+//             }
+//         }
+//         return head;
+// 	}
+
+// }

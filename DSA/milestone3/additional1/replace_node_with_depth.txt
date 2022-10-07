@@ -1,0 +1,41 @@
+/*
+	
+	Following is the structure used to represent the Binary Tree Node
+
+	class BinaryTreeNode<T> {
+		T data;
+		BinaryTreeNode<T> left;
+		BinaryTreeNode<T> right;
+
+		public BinaryTreeNode(T data) {
+			this.data = data;
+			this.left = null;
+			this.right = null;
+		}
+	}
+
+*/
+
+public class Solution {
+
+	public static void changeToDepthTree(BinaryTreeNode<Integer> root) {
+	    //Your code goes here
+        if(root==null) {
+            return;
+        }
+        root.data = 0;
+        depth(root.left, root.data);
+        depth(root.right, root.data);
+        
+	}
+    
+    public static void depth(BinaryTreeNode<Integer> root, int data) {
+        if(root==null) {
+            return;
+        }
+        root.data = 1 + data;
+        depth(root.left, root.data);
+        depth(root.right, root.data);
+    }
+
+}

@@ -1,0 +1,32 @@
+
+public class Solution {
+
+/*	TreeNode structure 
+ * 
+ * class TreeNode<T> {
+		T data;
+		ArrayList<TreeNode<T>> children;
+
+		TreeNode(T data){
+			this.data = data;
+			children = new ArrayList<TreeNode<T>>();
+		}
+	}*/
+	
+	public static TreeNode<Integer> findNextLargerNode(TreeNode<Integer> root, int n){
+		
+		// Write your code here
+        TreeNode<Integer> node = new TreeNode<>(Integer.MAX_VALUE);
+        if(root.data>n) {
+            node = root;
+        }
+        for(int i = 0; i<root.children.size(); i++) {
+            TreeNode<Integer> node1 = findNextLargerNode(root.children.get(i), n);
+            if(node1.data<node.data && node1.data>n) {
+                node = node1;
+            }
+        }
+        return node;
+	}
+	
+}

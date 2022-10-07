@@ -1,0 +1,19 @@
+public class Solution {  
+
+    public static void sortZeroesAndOne(int[] arr) {
+    	//Your code goes here
+        int count1 = 0;
+        int count0 = 0;
+        int p = arr.length;
+        for(int i=0; i<arr.length;i++) {
+                if(arr[i]==1) {
+                    count1++;
+                    arr[i]=0;
+                }
+        }
+        for(int i=0; i<count1;i++) {
+            arr[p-1]=1;
+            p--;
+        }
+    }
+}

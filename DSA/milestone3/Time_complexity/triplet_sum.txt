@@ -1,0 +1,155 @@
+
+import java.util.Arrays;
+public class Solution {	
+
+	public static int sumOfN(int x){
+        if(x==1){
+            return 1;
+        }
+        return x+sumOfN(x-1);
+    }
+    
+    public static int pairSum(int[] arr, int startIndex, int num) {
+        //Your code goes here
+        int count=0;
+        
+        for(int i=startIndex,j=arr.length-1;i<j;){
+            if(arr[i]+arr[j]==num){
+                if(arr[i]==arr[j]){
+                    int countNum=0;
+                    while(i<j){
+                        i++;
+                        countNum++;
+                    }
+                    return count+sumOfN(countNum);
+                }
+                int counti=1,countj=1;
+                while(arr[i]==arr[i+1]){
+                    i++;
+                    counti++;
+                }
+                while(arr[j-1]==arr[j] && i<j){
+                    countj++;
+                    j--;
+                }
+                i++;j--;
+                count+=counti*countj;
+            }
+            else if(arr[i]+arr[j]>num){
+                j--;
+            }else{
+                i++;
+            }
+        }
+        return count;
+    }
+    
+    public static int tripletSum(int[] arr, int num) {
+		//Your code goes here
+        Arrays.sort(arr);
+        int count=0;
+        for(int i=0;i<arr.length;i++){
+            count+=pairSum(arr, i+1, num-arr[i]);
+        }
+        return count;
+	}
+}
+
+
+
+// public class Solution {	
+
+// 	public static int tripletSum(int[] arr, int num) {
+// 		//Your code goes here
+//         int count = 0;
+        
+//         for(int i=0; i<arr.length; i++) {
+//         	// for(int j=i+1; j<arr.length; j++) {
+//         	// for(int k=j + 1; k<arr.length; k++) {
+//         	// if(arr[i] + arr[j] + arr[k] == num) {
+//         	// count += 1;
+//         	// }
+//         	// 	}
+//         	// }
+//             count+=tripletSum(arr, i+1, num-arr[i]);
+//         }
+        
+//         return count;
+// 	}
+//     public static int tripletSum(int []arr, int i, int num) {
+//         for(int j = i; j<arr.length; j++) {
+//             for(int k = j+1; k<arr.length; k++) {
+                
+//             }
+//         }
+//     }
+// }
+
+
+
+
+/*
+import java.util.Arrays;
+public class Solution {	
+
+    public static int tripletSum(int[] arr, int num) {
+        // Your code goes here
+        // int count = 0;
+        // for(int i = 0; i<arr.length; i++) {
+        //     for(int j=0; j<arr.length; j++) {
+        //         for(int k = 0; k<arr.length; k++) {
+        //             int sum = 0;
+        //             if(i==j||i==k||j==k) {
+        //                 continue;
+        //             }
+        //             sum = arr[i] + arr[j] + arr[k];
+        //             if(sum==num) {
+        //                 count++;
+        //             }
+        //         }
+        //     }
+        // }
+        // count = count/6;
+        // return count;
+        Arrays.sort(arr);
+        int count = 0;
+        for(int i = 0; i<arr.length; i++) {
+            int start = 0;
+            int store = 0;
+            for(int j = i+1, k = arr.length-1; j<arr.length && k>=0; ) {
+                if(j>=k) {
+                    j++;
+                    continue;
+                }
+                if(arr[i] + arr[j] + arr[k] == num) {
+                    // System.out.println(arr[i] + " " +  arr[j] + " " + arr[k]);
+                    count++;
+                    if(arr[k]==arr[k-1] && k>=j+1) {
+                        if(start==0) {
+                            start = k;
+                        }
+                        k--;
+                    }
+                    else if(arr[j] == arr[j-1]) {
+                        if(start>0) {
+                            k = start;
+                            start = 0;
+                        }
+                        j++;
+                    }
+                    else {
+                        k--;
+                    }
+                }
+                else if(arr[i] + arr[j] + arr[k] < num) {
+                    j++;
+                }
+                else if(arr[i] + arr[j] + arr[k] > num) {
+                    k--;
+                }
+            }
+        }
+        return count;
+    }
+}
+*/

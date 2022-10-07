@@ -1,0 +1,22 @@
+
+public class solution {
+
+	public static int convertStringToInt(String input){
+		// Write your code here
+        int si = 0;
+        int n = 0;
+		int s = convertStringToInt(input, si, n);
+        return s;
+	}
+    public static int convertStringToInt(String input, int si, int n) {
+        if(si==input.length()) {
+            return 0;
+        }
+        // n *=10;
+        // int s = Integer.parseInt(String.valueOf(input.charAt(si)));
+        n = Integer.parseInt(input);
+        // // n = s*10 + convertStringToInt(input, si+1, n);
+        // n = s*
+        return n;
+    }
+}

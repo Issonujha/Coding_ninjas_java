@@ -1,0 +1,58 @@
+public class solution {
+
+	public static void printKeypad(int input){
+		// Write your code here
+        printKeypad(input, "");
+	}
+    
+    public static void printKeypad(int input, String s) {
+        if(input<=0) {
+            System.out.println(s);
+            return;
+        }
+        char[] getChars = getSequence(input%10);
+        for(int i=0; i<getChars.length; i++) {
+        	printKeypad(input/10, getChars[i] + s);
+        }
+    }
+    
+    
+    public static char[] getSequence(int n) {
+		if(n==2) {
+			char[] Sequence = {'a', 'b', 'c'};
+			return Sequence;
+		}
+		else if(n==3) { 
+			char[] Sequence = {'d', 'e', 'f'};
+			return Sequence;
+		}
+		else if(n==4) {
+			char[] Sequence = {'g', 'h', 'i'};
+			return Sequence;
+		}
+		else if(n==5) {
+			char[] Sequence = {'j', 'k', 'l'};
+			return Sequence;
+		}
+		else if(n==6) {
+			char[] Sequence = {'m', 'n', 'o'};
+			return Sequence;
+		}
+		else if(n==7) {
+			char[] Sequence = {'p', 'q', 'r', 's'};
+			return Sequence;
+		}
+		else if(n==8) {
+			char[] Sequence = {'t', 'u', 'v'};
+			return Sequence;
+		}
+		else if(n==9) {
+			char[] Sequence = {'w', 'x', 'y', 'z'};
+			return Sequence;
+		}
+		else {
+			char[] Sequence= new char[0];
+			return Sequence;
+		}
+    }
+}

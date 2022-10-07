@@ -1,0 +1,30 @@
+
+public class Solution {
+
+	public static int balancedBTs(int height){
+
+		/* Your class should be named Solution
+		 * Don't write main().
+		 * Don't read input, it is passed as function argument.
+		 * Return output and don't print it.
+	 	 * Taking input and printing output is handled automatically.
+        */
+		int mod = (int)(Math.pow(10, 9)+7);
+		if(height==0 || height==1) {
+			return 1;
+		}
+        int []output = new int[height+1];
+        output[0] = 1;
+        output[1] = 1;
+        for(int i = 2; i<output.length; i++) {
+            int x = output[i-1] % mod;
+            int y = output[i-2] % mod;
+            long res1 = (long)x * x;
+            long res2 = (long)x * y * 2;
+            int a = (int)(res1%mod);
+            int b = (int)(res2%mod);
+            output[i] = (a + b)%mod;
+        }
+        return output[height];
+	}
+}

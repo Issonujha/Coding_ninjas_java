@@ -1,0 +1,26 @@
+public class Solution {
+
+    public static int arrayRotateCheck(int[] arr){
+    	//Your code goes here
+        if(arr.length<=0) {
+            return 0;
+        }
+        int i = 0;
+        int count = 0;
+        int temp = arr[0];
+        while(i<arr.length) {
+            if(temp<=arr[i]) {
+                count++;
+                i++;
+            }
+            else {
+                break;
+            }
+        }
+        if(count==arr.length) {
+            count=0;
+        }
+        return count;
+    }
+
+}

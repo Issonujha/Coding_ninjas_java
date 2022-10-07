@@ -1,0 +1,78 @@
+/******************
+ * Following is the main function we are using internally.
+ * Refer this for completing the ComplexNumbers class
+ * 
+ 
+ public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+
+		int real1 = s.nextInt();
+		int imaginary1 = s.nextInt();
+
+		int real2 = s.nextInt();
+		int imaginary2 = s.nextInt();
+
+		ComplexNumbers c1 = new ComplexNumbers(real1, imaginary1);
+		ComplexNumbers c2 = new ComplexNumbers(real2, imaginary2);
+
+		int choice = s.nextInt();
+		 
+		if(choice == 1) {
+			// Add
+			c1.plus(c2);
+			c1.print();
+		}
+		else if(choice == 2) {
+			// Multiply
+			c1.multiply(c2);
+			c1.print();
+		}
+		else {
+			return;
+		}
+	}
+ ******************/
+
+public class ComplexNumbers {
+	// Complete this class
+    private int real;
+    private int imaginary;
+    
+    // Constructor
+    public ComplexNumbers(int real, int imaginary) {
+        this.real = real;
+        this.imaginary = imaginary;
+    }
+    
+    //getter and setters all are in the constructor
+    public void plus(ComplexNumbers c1) {
+        this.real = this.real + c1.real;
+        this.imaginary = this.imaginary + c1.imaginary;
+    }
+    //Multiply two complex numbers
+    public void multiply(ComplexNumbers c1) {
+        int temp = this.real;
+        this.real = this.real*c1.real - this.imaginary*c1.imaginary;
+        this.imaginary = this.imaginary*c1.real + temp*c1.imaginary;
+    }
+    
+    //Add two complexNumbers and return new fraction. Function
+    public static ComplexNumbers plus(ComplexNumbers c1, ComplexNumbers c2) {
+        int newreal = c1.real + c2.real;
+        int newimaginary = c1.imaginary + c2.imaginary;
+        ComplexNumbers c = new ComplexNumbers(newreal, newimaginary);
+        return c;
+    }
+    
+    
+    //print the complex number
+    public void print() {
+        if(imaginary==0) {
+            System.out.println(real);
+        }
+        else{
+        	System.out.println(real + " + " + "i"+ imaginary);
+        }
+    }
+	
+}

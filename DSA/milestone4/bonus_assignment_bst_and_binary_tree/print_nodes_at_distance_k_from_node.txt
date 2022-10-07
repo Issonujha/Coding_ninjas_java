@@ -1,0 +1,95 @@
+import java.util.*;
+/*
+	
+	Following is the structure used to represent the Binary Tree Node
+
+	class BinaryTreeNode<T> {
+		T data;
+		BinaryTreeNode<T> left;
+		BinaryTreeNode<T> right;
+
+		public BinaryTreeNode(T data) {
+			this.data = data;
+			this.left = null;
+			this.right = null;
+		}
+	}
+
+*/
+
+public class Solution {
+    
+	private static ArrayList<Pair> path = new ArrayList<>();
+    public static ArrayList<Pair> getPath(BinaryTreeNode<Integer> root, int node) {
+        if(root==null) {
+            return null;
+        }
+        if(root.data==node) {
+            Pair output = new Pair(root, "null");
+            path.add(output);
+            return path;
+        }
+        ArrayList<Pair> left = getPath(root.left, node);
+        if(left!=null) {
+            Pair output = new Pair(root, "left");
+            path.add(output);
+            return path;
+        }
+        ArrayList<Pair> right = getPath(root.right, node);
+        if(right!=null) {
+            Pair output = new Pair(root, "right");
+            path.add(output);
+            return path;
+        }
+        return null;
+    }
+    
+    public static void printDepth(BinaryTreeNode<Integer> root, int k) {
+        if(root==null || k<0) {
+            return;
+        }
+        if(k==0) {
+            System.out.println(root.data);
+            return;
+        }
+        printDepth(root.left, k-1);
+        printDepth(root.right, k-1);
+    }
+    
+	public static void nodesAtDistanceK(BinaryTreeNode<Integer> root, int node, int k) {
+	    //Your code goes here
+        ArrayList<Pair> path = getPath(root, node);
+        // for(Pair i:path) {
+        //     System.out.print(i.node.data + " " + i.direction + " ");
+        // }
+        
+        for(int i = 0; i<path.size(); i++) {
+            if(i>k) {
+            	return;
+            }
+            Pair p = path.get(i);
+            // System.out.println(p.direction);
+            if(k-i==0) {
+                printDepth(p.node, k-i);
+            }
+            else if(p.direction.equals("null")) {
+                printDepth(p.node, k-i);
+            }
+            else if(p.direction.equals("left")) {
+                printDepth(p.node.right, k-i-1);
+            }
+            else if(p.direction.equals("right")) {
+                printDepth(p.node.left, k-i-1);
+            }
+        } 
+    }
+}
+
+class Pair {
+    BinaryTreeNode<Integer> node;
+    String direction;
+    Pair(BinaryTreeNode<Integer> node, String direction) {
+        this.node = node;
+        this.direction = direction;
+    }
+}

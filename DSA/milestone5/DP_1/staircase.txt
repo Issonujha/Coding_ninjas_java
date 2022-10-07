@@ -1,0 +1,39 @@
+public class Solution {
+
+	public static long staircase(int n) {
+		//Your code goes here
+        // return staircase(n, 0);
+        if(n==0 || n==1 || n==2) {
+            return n;
+        }
+        long output[] = new long[n + 1];
+        output[0] = 0;
+        output[1] = 1;
+        output[2] = 2;
+        output[3] = 4;
+        return staircase(n, output);
+	}
+    public static long staircase(int n, long count) {
+        if(n==0) {
+            return 1;
+        }
+        if(n<0) {
+            return 0;
+        }
+        int count1 = 0, count2 = 0, count3 = 0;
+        count1 += staircase(n-1, count);
+        count2 += staircase(n-2, count);
+        count3 += staircase(n-3, count);
+        return count1 + count2 + count3;
+    }
+    public static long staircase(int n, long[] output) {
+        for(int i = 4; i<output.length; i++) {
+            long checkminus1 = output[i-1];
+            long checkminus2 = output[i-2];
+            long checkminus3 = output[i-3];
+            output[i] = checkminus1 + checkminus2 + checkminus3;
+        }
+        return output[n];
+    }
+
+}

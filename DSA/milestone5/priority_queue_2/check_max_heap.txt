@@ -1,0 +1,32 @@
+public class Solution {
+
+	public static boolean checkMaxHeap(int arr[]) {
+		/*
+		 * Your class should be named Solution Don't write main(). Don't read input, it
+		 * is passed as function argument. Return output and don't print it. Taking
+		 * input and printing output is handled automatically.
+		 */
+        return checkMaxHeap(arr, 0);
+	}
+    public static boolean checkMaxHeap(int arr[], int parent) {
+        int lCIndex = (parent*2)+1;
+        int rCIndex = (parent*2)+2;
+        if(lCIndex>arr.length-1) {
+            return true;
+        }
+        int data = 0;
+        if(rCIndex>arr.length-1) {
+            data = arr[lCIndex];
+        }
+        else {
+        	data = Math.max(arr[lCIndex], arr[rCIndex]);
+        }
+        if(data>arr[parent]) {
+            return false;
+        }
+        boolean l = checkMaxHeap(arr, lCIndex);
+        boolean r = checkMaxHeap(arr, rCIndex);
+        // System.out.println(l + " " + r);
+        return l && r;
+    }
+}

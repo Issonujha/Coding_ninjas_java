@@ -1,0 +1,61 @@
+public class Solution {  
+
+    public static int secondLargestElement(int[] arr) {
+    	//Your code goes here
+        int gre3;
+        if(arr.length<=1) {
+            gre3 = Integer.MIN_VALUE;
+            return gre3;
+        }
+        for(int i = 0; i<arr.length;i++) {
+            if(arr[i] == arr[0]) {
+                if(i==arr.length-1) {
+                    gre3 = Integer.MIN_VALUE;
+                    return gre3;
+                }
+            }
+            else {
+                break;
+            }
+        }
+        int i = 1;
+        int po = 0;
+        int gre = Integer.MIN_VALUE;
+        while(i<arr.length) {
+            if(arr[i]>gre) {
+                gre = arr[i];
+                po = i;
+            }
+            i++;
+        }
+        // i = 1;                 // here is the issue
+        // int gre2 = Integer.MIN_VALUE;
+        // while(i<arr.length) {
+        //     if(arr[i]>gre2) {
+        //         gre2 = arr[i];
+        //     }
+        //     i++;
+        //     if((arr[i] == arr[po]) && (i<arr.length)) {
+        //         i++;
+        //     }
+        //     else {
+        //         break;
+        //     }
+        // }
+        int l = 0;
+        int sec = Integer.MIN_VALUE;
+        for(l=0; l<arr.length;l++) {
+            if(arr[l] == arr[po]) {
+                l++;
+                if(l==arr.length) {
+                    break;
+                }
+            }
+            if(arr[l] > sec) {
+                sec = arr[l];
+            }
+        }
+        return sec;
+    }
+
+}

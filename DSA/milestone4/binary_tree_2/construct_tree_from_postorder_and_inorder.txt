@@ -1,0 +1,50 @@
+/*
+	
+	Following is the structure used to represent the Binary Tree Node
+
+	class BinaryTreeNode<T> {
+		T data;
+		BinaryTreeNode<T> left;
+		BinaryTreeNode<T> right;
+
+		public BinaryTreeNode(T data) {
+			this.data = data;
+			this.left = null;
+			this.right = null;
+		}
+	}
+
+*/
+
+public class Solution {
+	public static BinaryTreeNode<Integer> buildTree(int []postOrder, int []inOrder, int pS, int pE, int iS, int iE) {
+    	// System.out.println(postOrder[pE]);
+        if(iE<iS) {
+            return null;
+        }
+        BinaryTreeNode<Integer> root = new BinaryTreeNode<Integer>(postOrder[pE]);
+        
+        if(iE==iS) {
+            return root;
+        } 
+        int index = -1;
+        for(int i = iS; i<=iE; i++) {
+            if(postOrder[pE]==inOrder[i]) {
+                index = i;
+                break;
+            }
+        }
+        if(index==-1) {
+            return null;
+        }
+        root.left = buildTree(postOrder, inOrder, pS, pS-iS+index-1, iS, index-1);
+        // System.out.println(pE);
+        root.right = buildTree(postOrder, inOrder, pE-iE+index, pE-1, index+1, iE);
+        return root;
+    }
+	public static BinaryTreeNode<Integer> buildTree(int[] postOrder, int[] inOrder) {
+		//Your code goes here
+        return buildTree(postOrder, inOrder, 0, postOrder.length-1, 0, inOrder.length-1);
+	}
+
+}

@@ -1,0 +1,25 @@
+import java.util.Scanner;
+public class Solution {
+    
+    public static void swapAlternate(int arr[]) {
+    	//Your code goes here
+        int temp;
+        for(int i=0, j=1; i<arr.length && j<arr.length; i +=2, j +=2) {
+            temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    }
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        int n = s.nextInt();
+        for(int i=0; i<n;i++) {
+            int e = s.nextInt();
+            int arr[] = new int[e];
+            for(int j=0; j<e;j++) {
+                arr[j] = s.nextInt();
+            }
+            swapAlternate(arr);
+        }
+    }
+}

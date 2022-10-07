@@ -1,0 +1,23 @@
+
+public class Solution {
+
+	public static int knapsack(int[] weights, int[] values, int n, int maxWeight) {
+		//Your code goes 
+        return knapsack(weights, values, n, maxWeight, 0, 0);
+	}
+    public static int knapsack(int[] weights, int[] values, int n, int maxWeight, int i, int j) {
+		//Your code goes
+        if(i>=weights.length || maxWeight==0) {
+            return 0;
+        }
+        
+        if(weights[i]>maxWeight) {
+            return knapsack(weights, values, n, maxWeight, i+1, j);
+        }
+        else {
+            int opt1 = values[i] + knapsack(weights, values, n, maxWeight-weights[i], i+1, j);
+            int opt2 = knapsack(weights, values, n, maxWeight, i+1, j);
+            return Math.max(opt1, opt2);
+        }
+	}
+}

@@ -1,0 +1,50 @@
+import java.util.Map;
+import java.util.HashMap;
+import java.util.ArrayList;
+
+public class Solution {
+    public static pair getSmallLarge(HashMap<Integer, Integer> map, int a) {
+        int start = a;
+        int end = a;
+        while(map.containsKey(++a)) {
+            end = a;
+        }
+        pair p = new pair();
+        p.start = start;
+        p.end = end;
+        return p;
+    }
+	public static ArrayList<Integer> longestConsecutiveIncreasingSequence(int[] arr) {
+		/* Your class should be named Solution
+		 * Don't write main().
+		 * Don't read input, it is passed as function argument.
+		 * Return output and don't print it.
+	 	 * Taking input and printing output is handled automatically.
+		*/
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for(int i = 0; i<arr.length; i++) {
+            map.put(arr[i], 1);
+        }
+        ArrayList<Integer> output = new ArrayList<>();
+        int max = 0;
+        int start = 0;
+        int end = 0;
+        for(int i = 0; i<arr.length; i++) {
+            pair p = getSmallLarge(map, arr[i]);
+            int start1 = p.start;
+            int end1 = p.end;
+            if(max<end1-start1) {
+                max = end1-start1;
+                start = start1;
+                end = end1;
+            }
+        }
+        output.add(start);
+        output.add(end);
+        return output;
+    }
+}
+class pair {
+    int start;
+    int end;
+}

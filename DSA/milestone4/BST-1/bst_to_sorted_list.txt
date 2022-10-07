@@ -1,0 +1,69 @@
+public class Solution {
+
+	/*
+	 * Binary Tree Node class
+	 * 
+	 * class BinaryTreeNode<T> { T data; BinaryTreeNode<T> left; BinaryTreeNode<T>
+	 * right;
+	 * 
+	 * public BinaryTreeNode(T data) { this.data = data; } }
+	 */
+
+	/*
+	 * LinkedList Node Class
+	 *
+	 * 
+	 * class LinkedListNode<T> { T data; LinkedListNode<T> next;
+	 * 
+	 * public LinkedListNode(T data) { this.data = data; } }
+	 */
+	public static Pair constructLL(BinaryTreeNode<Integer> root) {
+        if(root==null) {
+            Pair output = new Pair();
+            output.head = null;
+            output.tail = null;
+            return output;
+        }
+        if(root.left==null && root.right==null) {
+            Pair output = new Pair();
+            output.head = new LinkedListNode<Integer>(root.data);
+            output.tail = output.head;
+            return output;
+        }
+        if(root.left==null) {
+            Pair p = constructLL(root.right);
+            Pair outlef = new Pair();
+            outlef.head = new LinkedListNode<Integer>(root.data);
+            outlef.head.next = p.head;
+            outlef.tail = p.head;
+            return outlef;
+        }
+        if(root.right==null) {
+            Pair p = constructLL(root.left);
+            Pair outrig = new Pair();
+            outrig.head = p.head;
+            p.tail.next = new LinkedListNode<Integer>(root.data);
+            outrig.tail = p.tail.next;
+            
+            
+            return outrig;
+        }
+        Pair leftOut = constructLL(root.left);
+        Pair rightOut = constructLL(root.right);
+        Pair output = new Pair();
+        output.head = leftOut.head;
+        leftOut.tail.next = new LinkedListNode<Integer>(root.data);
+        leftOut.tail = leftOut.tail.next;
+        leftOut.tail.next = rightOut.head;
+        output.tail = rightOut.tail;
+        return output;
+    }
+	public static LinkedListNode<Integer> constructLinkedList(BinaryTreeNode<Integer> root) {
+		Pair output = constructLL(root);
+        return output.head;
+	}
+}
+class Pair {
+    LinkedListNode<Integer> head;
+    LinkedListNode<Integer> tail;
+}

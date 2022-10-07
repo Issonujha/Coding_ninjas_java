@@ -1,0 +1,39 @@
+/*
+	
+	Following is the structure used to represent the Binary Tree Node
+
+	class BinaryTreeNode<T> {
+		T data;
+		BinaryTreeNode<T> left;
+		BinaryTreeNode<T> right;
+
+		public BinaryTreeNode(T data) {
+			this.data = data;
+			this.left = null;
+			this.right = null;
+		}
+	}
+
+ */
+
+public class Solution {
+	static int actual = 0;
+	public static int height(BinaryTreeNode<Integer> root) {
+		//Your code goes here
+        height(root, 0);
+        return actual;
+	}
+    public static int height(BinaryTreeNode<Integer> root, int heigh) {
+        if(root==null) {
+            return 0;
+        }
+        heigh++;
+        height(root.left, heigh);
+        height(root.right, heigh);
+        if(actual<heigh) {
+            actual = heigh;
+        }
+        return 0;
+    }
+
+}

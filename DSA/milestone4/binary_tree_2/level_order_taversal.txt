@@ -1,0 +1,59 @@
+/*
+	
+	Following is the structure used to represent the Binary Tree Node
+
+	class BinaryTreeNode<T> {
+		T data;
+		BinaryTreeNode<T> left;
+		BinaryTreeNode<T> right;
+
+		public BinaryTreeNode(T data) {
+			this.data = data;
+			this.left = null;
+			this.right = null;
+		}
+	}
+
+*/
+
+public class Solution {
+
+	public static void printLevelWise(BinaryTreeNode<Integer> root) {
+		//Your code goes here
+        if (root==null)
+            return;
+        
+        QueueUsingLL<BinaryTreeNode<Integer>> nodesToPrint = new QueueUsingLL<BinaryTreeNode<Integer>>();
+        nodesToPrint.enqueue(root);
+        nodesToPrint.enqueue(null);
+        while(!nodesToPrint.isEmpty())
+        {
+            BinaryTreeNode<Integer> front = null;
+            try {
+                front =nodesToPrint.dequeue();
+            }catch (QueueEmptyException e) {
+                
+            }
+            if (front==null)
+            {
+                if (nodesToPrint.isEmpty())
+                    break;
+                else
+                {
+                    System.out.println();
+                	nodesToPrint.enqueue(null);
+                }
+                
+            }
+            else
+            {
+                System.out.print(front.data+" ");
+                if (front.left!=null)
+                    nodesToPrint.enqueue(front.left);
+                if (front.right!=null)
+                    nodesToPrint.enqueue(front.right);
+            }
+        }
+	}
+	
+}

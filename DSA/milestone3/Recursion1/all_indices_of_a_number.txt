@@ -1,0 +1,30 @@
+
+public class Solution {
+
+	public static int[] allIndexes(int input[], int x) {
+		/* Your class should be named Solution
+		 * Don't write main().
+		 * Don't read input, it is passed as function argument.
+		 * Return output and don't print it.
+	 	 * Taking input and printing output is handled automatically.
+		*/
+        int si = 0;
+        int arr[] = allIndexes(input, x, si);
+        
+        return arr;
+    }
+    public static int[] allIndexes(int input[], int x, int si) {
+        if(si == input.length) {
+            int arr[] = new int[0];
+            return arr;
+        }
+        // int arr1[] = new arr1[0];
+        if(input[si] == x) {
+            System.out.print(si + " ");
+        }
+        
+		int arr[] = allIndexes(input, x, si+1);
+    	
+        return arr;
+    }
+}

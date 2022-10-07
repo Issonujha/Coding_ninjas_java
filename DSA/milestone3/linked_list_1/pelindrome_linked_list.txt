@@ -1,0 +1,36 @@
+/*
+
+	Following is the Node class already written for the Linked List
+
+	class LinkedListNode<T> {
+    	T data;
+    	LinkedListNode<T> next;
+    
+    	public LinkedListNode(T data) {
+        	this.data = data;
+    	}
+	}
+
+*/
+
+public class Solution {
+	public static LinkedListNode<Integer> getTail(LinkedListNode<Integer> head) {
+        while(head.next.next!=null) {
+            head=head.next;
+        }
+        return head;
+    }
+	public static boolean isPalindrome(LinkedListNode<Integer> head) {
+		//Your code goes here
+        if(head==null || head.next==null) {
+            return true;
+        }
+        LinkedListNode<Integer> tail = getTail(head);
+        if(head.data!=tail.next.data) {
+            return false;
+        }
+        tail.next = null;
+        boolean res = isPalindrome(head.next);
+        return res;
+    }
+}

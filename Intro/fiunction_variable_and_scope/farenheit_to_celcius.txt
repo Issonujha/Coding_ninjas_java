@@ -1,0 +1,27 @@
+import java.util.Scanner;
+public class Solution {
+
+	public static void printFahrenheitTable(int start, int end, int step) {
+		/* Your class should be named Solution 
+		 * Don't write main(). 
+		 * Don't read input, it is passed as function argument. 
+		 * Print the specified output in required format. 
+		 * Taking input is handled automatically. 
+		 */
+        int i;
+        for(i = start; i<=end; i += step) {
+            int cel = ((i*5)-(32*5))/9;
+            System.out.println(i + "\t" + cel);
+        }
+	}
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        int S, E, W;
+        S = s.nextInt();
+        E = s.nextInt();
+        W = s.nextInt();
+        if(S>=0 && S<=1000 && E>=0 && E<=1000 && W>=0 && W<=1000){
+        	printFahrenheitTable(S, E, W);
+        }
+    }
+}

@@ -1,0 +1,37 @@
+/*
+	
+	Following is the structure used to represent the Binary Tree Node
+
+	class BinaryTreeNode<T> {
+		T data;
+		BinaryTreeNode<T> left;
+		BinaryTreeNode<T> right;
+
+		public BinaryTreeNode(T data) {
+			this.data = data;
+			this.left = null;
+			this.right = null;
+		}
+	}
+
+ */
+
+public class Solution {
+	static int count = 0;
+	public static int countNodesGreaterThanX(BinaryTreeNode<Integer> root, int x) {
+		//Your code goes here
+		count(root, x);
+        return count;
+	}
+	public static void count(BinaryTreeNode<Integer> root, int x) {
+        if(root==null) {
+            return;
+        }
+        if(root.data>x) {
+            // System.out.println("Hello");
+            count++;
+        }
+        countNodesGreaterThanX(root.left, x);
+        countNodesGreaterThanX(root.right, x);
+    }
+}

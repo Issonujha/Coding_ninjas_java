@@ -1,0 +1,26 @@
+
+public class solution {
+
+	public static boolean isStringPalindrome(String input) {
+		// Write your code here
+        int si = 0;
+        int li = input.length()-1;
+		boolean s = isStringPalindrome(input, si, li);
+		return s;
+    }
+    public static boolean isStringPalindrome(String input, int si, int li) {
+        boolean b = false;
+        if(input.charAt(si)==input.charAt(li)) {
+            if(si==input.length()-1) {
+            	return true;
+        	}
+            b = true;
+            b = isStringPalindrome(input, si+1, li-1);
+        }
+        else {
+            return false;
+        }
+        b = isStringPalindrome(input, si+1, li-1);
+        return b;
+    }
+}

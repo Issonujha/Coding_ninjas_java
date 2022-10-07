@@ -1,0 +1,25 @@
+public class solution {
+	public static void printSubsets(int input[]) {
+		// Write your code here
+        int output[] = new int[0];
+        int si = 0;
+		printsubsets(input, si, output);
+	}
+    public static void printsubsets(int input[], int si, int output[]) {
+        if(si==input.length) {
+            for(int i = 0; i<output.length; i++) {
+                System.out.print(output[i] + " ");
+            }
+            System.out.println();
+            return;
+        }
+        printsubsets(input, si+1, output);
+        int newOutput[] = new int[output.length+1];
+        int i = 0;
+        for(; i<output.length; i++) {
+            newOutput[i] = output[i];
+        }
+        newOutput[i] = input[si];
+        printsubsets(input, si+1, newOutput);
+    }
+}

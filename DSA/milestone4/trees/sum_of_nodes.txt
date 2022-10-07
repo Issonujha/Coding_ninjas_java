@@ -1,0 +1,49 @@
+
+public class Solution {
+
+/*	TreeNode structure 
+ * 
+ * class TreeNode<T> {
+		T data;
+		ArrayList<TreeNode<T>> children;
+
+		TreeNode(T data){
+			this.data = data;
+			children = new ArrayList<TreeNode<T>>();
+		}
+	}*/
+	
+	
+	
+	public static int sumOfAllNode(TreeNode<Integer> root){
+// 		QueueUsingLL<TreeNode<Integer>> queue = new QueueUsingLL<TreeNode<Integer>> ();
+//         int sum = 0;
+//         queue.enqueue(root);
+//         while(!queue.isEmpty()) {
+//             int n = queue.size();
+//             while(n>0) {
+//                 try{
+//                 TreeNode<Integer> ele = queue.dequeue();
+//                 sum = sum + (ele.data);
+//                 for(int i = 0; i<ele.children.size(); i++) {
+//                     queue.enqueue(ele.children.get(i));
+//                 }
+//                 n--;
+//                 }
+//                 catch (QueueEmptyException e) {
+                    
+//                 }
+//             }
+//         }
+//         return sum;
+        if(root==null) {
+            return 0;
+        }
+        int sum = 0;
+        for(int i = 0; i<root.children.size(); i++) {
+            sum += sumOfAllNode(root.children.get(i));
+        }
+        sum += root.data;
+        return sum;
+	}
+}

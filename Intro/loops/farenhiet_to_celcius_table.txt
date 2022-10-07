@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class Solution {
+
+
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);		
+		/* Your class should be named Solution.
+	 	* Read input as specified in the question.
+	 	* Print output as specified in the question.
+		*/
+        int cel;
+		int S = s.nextInt();
+        int E = s.nextInt();
+        int W = s.nextInt();
+        while(S >= 0 && S <= E && E >= S && E <= 900 && W >= 0 && W <= 40){
+            cel = (S-32)*5/9;
+            System.out.println(S+ " " + cel);
+            S = S + W;
+        }	
+	}
+
+}

@@ -1,0 +1,65 @@
+public class solution {
+
+	// Return a string array that contains all the possible strings
+	public static String[] keypad(int n){
+		// Write your code here
+		
+        if(n<=1) {
+            String key[] = {""};
+            return key;
+        }
+        char sequence[] = getSequence(n%10);
+        String smallAns[] = keypad(n/10);
+        String[] ans = new String[sequence.length * smallAns.length];
+        int k = 0;
+        for(int i = 0; i<sequence.length;i++) {
+            for(int j = 0; j < smallAns.length; j++) {
+                ans[k] = smallAns[j] + sequence[i];
+                k++;
+            }
+        }
+        return ans;
+	}
+    
+    
+    
+    
+	public static char[] getSequence(int n) {
+		if(n==2) {
+			char[] Sequence = {'a', 'b', 'c'};
+			return Sequence;
+		}
+		else if(n==3) { 
+			char[] Sequence = {'d', 'e', 'f'};
+			return Sequence;
+		}
+		else if(n==4) {
+			char[] Sequence = {'g', 'h', 'i'};
+			return Sequence;
+		}
+		else if(n==5) {
+			char[] Sequence = {'j', 'k', 'l'};
+			return Sequence;
+		}
+		else if(n==6) {
+			char[] Sequence = {'m', 'n', 'o'};
+			return Sequence;
+		}
+		else if(n==7) {
+			char[] Sequence = {'p', 'q', 'r', 's'};
+			return Sequence;
+		}
+		else if(n==8) {
+			char[] Sequence = {'t', 'u', 'v'};
+			return Sequence;
+		}
+		else if(n==9) {
+			char[] Sequence = {'w', 'x', 'y', 'z'};
+			return Sequence;
+		}
+		else {
+			char[] Sequence= new char[0];
+			return Sequence;
+		}
+    }
+}

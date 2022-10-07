@@ -1,0 +1,71 @@
+	
+public class Solution {
+	public static int editDistancerec(String s1, String s2){
+
+		/* Your class should be named Solution
+		 * Don't write main().
+		 * Don't read input, it is passed as function argument.
+		 * Return output and don't print it.
+	 	 * Taking input and printing output is handled automatically.
+        */ 
+        return editDistancerec(s1, s2, s1.length(), s2.length());
+	}
+	public static int editDistancerec(String s1, String s2, int m, int n){
+        if(m==0) {
+            return n;
+        }
+        if(n==0) {
+            return m;
+        }
+        if(s1.charAt(m-1)==s2.charAt(n-1)) {
+            return editDistancerec(s1, s2, m-1, n-1);
+        }
+        return 1 + Math.min(editDistancerec(s1, s2, m-1, n), Math.min(editDistancerec(s1, s2, m, n-1), editDistancerec(s1, s2, m-1, n-1)));
+    }
+	public static int editDistance(String s, String t) {
+		//Your code goes here
+        int m = s.length();
+        int n = t.length();
+        if(m==0) {
+            return n;
+        }
+        if(n==0) {
+            return m;
+        }
+        // System.out.println(m + " " + n);
+        int output[][] = new int[m+1][n+1];
+        for(int i = 0; i<=m; i++) {
+            output[i][0] = i;
+        }
+        for(int i = 0; i<=n; i++) {
+            output[0][i] = i;
+        }
+        return editDistanceDP(s, t, m, n, output);
+    }
+    public static int editDistanceDP(String s, String t, int m, int n, int output[][]) {
+		//Your code goes here
+        for(int i = 0; i<output.length; i++) {
+            for(int j =0; j<output[i].length; j++) {
+                if(i==0) {
+                    output[i][j] = j;
+                }
+                else if(j==0) {
+                    output[i][j] = i;
+                }
+                else if(s.charAt(i-1)==t.charAt(j-1)) {
+                    output[i][j] = output[i-1][j-1];
+                } else {
+                    output[i][j] = 1 + Math.min(
+                        					output[i][j-1],
+                        					Math.min(
+                                            	output[i-1][j],
+                                                output[i-1][j-1]
+                                            )
+                    					);
+                }
+            }
+        }
+        return output[m][n];
+    }
+
+}

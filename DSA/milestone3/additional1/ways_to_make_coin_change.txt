@@ -1,0 +1,19 @@
+
+public class Solution {
+
+	
+	public static int countWaysToMakeChange(int denominations[], int value){
+        // Write your code 
+        return countWays(denominations, value, denominations.length);
+	}
+    public static int countWays(int denominations[], int value, int k){
+        int table[] = new int[value+1];
+        table[0] = 1;
+        for(int i = 0; i<k; i++) {
+            for(int j = denominations[i]; j<=value; j++) {
+                table[j] += table[j-denominations[i]];
+            }
+        }
+        return table[value];
+    }
+}

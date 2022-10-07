@@ -1,0 +1,30 @@
+public class solution {
+
+	// element - number to be searched
+	public static int binarySearch(int input[], int element) {
+		// Write your code here
+		int sI = 0;
+        int eI = input.length-1;
+        int mid = (sI+eI)/2;
+        int pos = binarySearch(input, element, sI, eI);
+        return pos;
+	}
+    public static int binarySearch(int input[], int element, int sI, int eI) {
+        if(sI>eI) {
+            return -1;
+        }
+        int mid = (sI + eI)/2;
+        if(input[mid]==element) {
+            return mid;
+        }
+        if(element<input[mid]) {
+            return binarySearch(input, element, sI, mid-1);
+        }
+        else if(element>input[mid]){
+            return binarySearch(input, element, mid+1, eI);
+        }
+        else {
+            return -1;
+        }
+    }
+}

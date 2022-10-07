@@ -1,0 +1,58 @@
+/*
+
+    Following is the Node class already written for the Linked List
+
+    class LinkedListNode<T> {
+        T data;
+        LinkedListNode<T> next;
+    
+        public LinkedListNode(T data) {
+            this.data = data;
+        }
+    }
+
+*/
+
+public class Solution {
+	public static LinkedListNode<Integer> getMid(LinkedListNode<Integer> head) {
+        LinkedListNode<Integer> slow = head;
+        LinkedListNode<Integer> fast = head;
+        while(fast.next!=null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+    public static LinkedListNode<Integer> sortMerge(LinkedListNode<Integer> left, LinkedListNode<Integer> right) {
+        LinkedListNode<Integer> result = null;
+        if(left==null) {
+            return right;
+        }
+        if(right==null) {
+            return left;
+        }
+        if(left.data<=right.data) {
+            result = left;
+            result.next = sortMerge(left.next, right);
+        }
+        else {
+            result = right;
+            result.next = sortMerge(left, right.next);
+        }
+        return result;
+    }
+	public static LinkedListNode<Integer> mergeSort(LinkedListNode<Integer> head) {
+		//Your code goes here
+        if(head==null || head.next == null) {
+            return head;
+        }
+        LinkedListNode<Integer> mid = getMid(head);
+        LinkedListNode<Integer> nextMid = mid.next;
+        mid.next = null;
+        LinkedListNode<Integer> left = mergeSort(head);
+        LinkedListNode<Integer> right = mergeSort(nextMid);
+        LinkedListNode<Integer> sortedList = sortMerge(left, right);
+        return sortedList;
+	}
+
+}

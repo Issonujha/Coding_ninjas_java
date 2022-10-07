@@ -1,0 +1,49 @@
+import java.util.Scanner;
+public class Main {
+	
+	public static void main(String[] args) {
+		// Write your code here
+		Scanner s = new Scanner(System.in);
+        int n = s.nextInt();
+        int k;
+        int rem=0, sum=0, count=0, m, l=0;
+        boolean i = true;
+        boolean z = false;
+        for(k=n;k>0;k /=10)
+        {
+            rem = k%10;
+            count++;
+        }
+        for(k=n; k>0; k /=10)
+        {
+            rem = k%10;
+            if(count==1){
+                l=rem;
+            }
+            else if(count==2){
+                l = rem*rem;
+            }
+            else if(count == 3){
+                l = rem*rem*rem;
+            }
+            else if(count==4){
+                l=rem*rem*rem*rem;
+            }
+            else if(count==5){
+                l=rem*rem*rem*rem*rem;
+            }
+            else{
+                l=0;
+            }
+            sum = sum + l;
+        }
+        if(sum==n)
+        {
+            System.out.println(i);
+        }
+        else
+        {
+            System.out.println(z);
+        }
+	}
+}

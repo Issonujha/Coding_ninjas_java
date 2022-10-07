@@ -1,0 +1,27 @@
+
+public class Solution {
+
+	public static boolean isPalindrome(String str) {
+		//Your code goes here
+        // String check = "";
+        // for(int i=0; i<str.length(); i++) {
+        //     check = str.charAt(i) + check;
+        // }
+        // if(str.equals(check)) {
+        //     return true;
+        // }
+        // return false;
+        int i=0, j=str.length()-1;
+        while(i<str.length()/2) {
+            if(str.charAt(i) != str.charAt(j)) {
+                return false;
+            }
+            else{
+                i++;
+                j--;
+            }
+        }
+        return true;
+	}
+
+}

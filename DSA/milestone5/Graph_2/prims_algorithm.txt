@@ -1,0 +1,80 @@
+import java.util.Scanner;
+import java.util.*;
+public class Solution {
+	
+    public static int min_weight(int[] weight, boolean[] visited) {
+        int min = Integer.MAX_VALUE, minIndex = -1;
+        
+        for(int i = 0; i<weight.length; i++) {
+            if(!visited[i] && weight[i] < min) {
+                min = weight[i];
+                minIndex = i;
+            }
+        }
+        return minIndex;
+    }
+    
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		int V = s.nextInt();
+		int E = s.nextInt();
+
+		/* Write Your Code Here
+		 * Complete the Rest of the Program
+		 * You have to take input and print the output yourself
+		 */
+        //For four array declare=ation
+        int vertex[] = new int[V];
+        int parent[] = new int[V];
+        int weight[] = new int[V];
+        boolean visited[] = new boolean[V];
+        
+        
+        //Adjacency Matrix
+        int adj[][] = new int[V][V];
+        for(int i = 0; i<E; i++) {
+            int start = s.nextInt();
+            int dest = s.nextInt();
+            int weigh = s.nextInt();
+            adj[start][dest] = weigh;
+            adj[dest][start] = weigh;
+        }
+        
+        
+        //Vertex allotted //for weight Base
+        for(int i = 0; i<V; i++) {
+            vertex[i] = i;
+            weight[i] = Integer.MAX_VALUE;
+        }
+        
+        weight[0] = 0;
+        
+        //Parent Base
+        parent[0] = -1;
+        
+        
+        for(int count = 0; count < V-1; count++) {
+            int choose = min_weight(weight, visited);
+            visited[choose] = true;
+            for(int i = 0; i<V; i++) {
+                if(adj[choose][i]!=0 && !visited[i] && adj[choose][i] < weight[i]) {
+                    // System.out.println(i);
+                    weight[i] = adj[choose][i];
+                    parent[i] = choose;
+                }
+            }  
+        }
+        
+        
+        
+        for(int i = 1; i<V; i++) {
+            if(parent[i]<vertex[i]) {
+                System.out.println(parent[i] + " " + vertex[i] + " " + weight[i]);
+            }
+            else {
+                System.out.println(vertex[i] + " " + parent[i] + " " + weight[i]);
+            }
+        }
+        
+	}
+}

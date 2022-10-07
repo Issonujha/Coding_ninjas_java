@@ -1,0 +1,24 @@
+
+public class Solution {
+
+	public static void printSubstrings(String str) {
+		//Your code goes here
+	// int n=str.length();
+	// int i;
+	// int j;
+	// for(i=0; i<=n-1;i++) {
+	// String s = "";
+	// for(j=i; j<=n-1;j++) {
+	// s = s + str.charAt(j);
+	// System.out.println(s);
+	// }
+	// }
+        for(int len = 0; len<=str.length(); len++) {
+            for(int start=0; start<=str.length()-len;start++) {
+                int end = start + len - 1;
+                System.out.println(str.substring(start, end+1));
+            }
+        }
+	}
+
+}

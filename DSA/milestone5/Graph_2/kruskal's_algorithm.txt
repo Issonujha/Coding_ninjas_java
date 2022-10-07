@@ -1,0 +1,78 @@
+import java.util.Scanner;
+import java.util.*;
+public class Solution {
+
+    public static int findVer(int child, int[] parent) {
+        int par = -1;
+        int i = child;
+        
+        while(parent[i] != i) {
+            par = parent[i];
+            i = par;
+        }
+        return parent[i];
+    }
+    
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int V = sc.nextInt();
+		int E = sc.nextInt();
+
+		/* Write Your Code Here
+		 * Complete the Rest of the Program
+		 * You have to take input and print the output yourself
+		 */
+        ArrayList<Edge> input = new ArrayList<>();
+        ArrayList<Edge> output = new ArrayList<>();
+        while(sc.hasNext()) {
+            Edge e = new Edge();
+            e.source = sc.nextInt();
+            e.destination = sc.nextInt();
+            e.weight = sc.nextInt();
+            input.add(e);
+        }
+        int parent[] = new int[V];
+        for(int i = 0; i<V; i++) {
+            parent[i] = i;
+        }
+        
+        Collections.sort(input);
+        
+        int count = 0;
+        int i = 0;
+        while(count!=V-1) {
+            Edge curr = input.get(i);
+            int startVerPar = findVer(curr.source, parent);
+            int destVerPar = findVer(curr.destination, parent);
+            if(startVerPar!=destVerPar) {
+                output.add(curr);
+                parent[startVerPar] = destVerPar;
+                count++;
+            }
+            i++;
+        }
+        
+        for(Edge out:output) {
+            if(out.source>out.destination) {
+            	System.out.println(out.destination + " " + out.source + " " + out.weight);
+            }
+            else {
+                System.out.println(out.source + " " + out.destination + " " + out.weight);
+            }
+        }
+        
+	}
+}
+
+class Edge implements Comparable<Edge>{
+    
+    int source;
+    int destination;
+    int weight;
+    
+    public int compareTo(Edge e) {
+        int comp = ((Edge)e).weight;
+        return this.weight-comp;
+    }
+    
+}

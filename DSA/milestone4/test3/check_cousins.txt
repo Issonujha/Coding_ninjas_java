@@ -1,0 +1,59 @@
+import java.util.ArrayList;
+
+
+public class solution {
+
+	/*	Binary Tree Node class
+	 * 
+	 * class BinaryTreeNode<T> {
+		T data;
+		BinaryTreeNode<T> left;
+		BinaryTreeNode<T> right;
+
+		public BinaryTreeNode(T data) {
+			this.data = data;
+		}
+	}
+	 */
+    static boolean isSibling(BinaryTreeNode<Integer> node, int a, int b) 
+    { 
+        // Base case 
+        if (node == null) 
+            return false; 
+  
+        if(node.left==null) {
+            return false;
+        }
+        if(node.right==null) {
+            return false;
+        }
+        return ((node.left.data == a && node.right.data == b) || 
+                (node.left.data == b && node.right.data == a) || 
+                isSibling(node.left, a, b) || 
+                isSibling(node.right, a, b)); 
+    } 
+  
+    // Recursive function to find level of Node 'ptr' in 
+    // a binary tree 
+    static int level(BinaryTreeNode<Integer> node, int ptr, int lev) 
+    { 
+        // base cases 
+        if (node == null) 
+            return 0; 
+  
+        if (node.data == ptr) 
+            return lev; 
+  
+        // Return level if Node is present in left subtree 
+        int l = level(node.left, ptr, lev + 1); 
+        if (l != 0) 
+            return l; 
+  
+        // Else search in right subtree 
+        return level(node.right, ptr, lev + 1); 
+    }
+	public static boolean isCousin(BinaryTreeNode<Integer> root, int p, int q) {
+		// Write your code here
+		return ((level(root, p, 1)==level(root, q, 1)&&!isSibling(root, p, q)));
+	}
+}

@@ -1,0 +1,20 @@
+import java.util.Scanner;
+public class Main {
+	
+	public static void main(String[] args) {
+		// Write your code here
+		Scanner s = new Scanner(System.in);
+        int N = s.nextInt();
+        String x = "";
+        int bin = 0;
+        if(N==0){
+            x=x+bin;
+        }
+        while(N>0){
+            int rem = N % 2;
+            x = rem + x;
+            N = N/2;
+        }
+        System.out.print(x);
+	}
+}

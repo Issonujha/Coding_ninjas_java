@@ -1,0 +1,63 @@
+public class solution {
+
+	public static void mergeSort(int[] input){
+		// Write your code here
+        int si = 0;
+        int ei = input.length-1;
+		mergeSort(input, si, ei);
+	}
+    public static void mergeSort(int[] input, int si, int ei) {
+        if(si == ei) {
+            return;
+        }
+        int mid = (si + ei) / 2;
+        mergeSort(input, si, mid);
+        mergeSort(input, (mid+1), ei);
+        merge(input, si, ei);
+    }
+    public static void merge(int[] input, int si, int ei) {
+        // for(int i = si; i<=ei; i++) {
+        //     for(int j = si; j<=ei; j++) {
+        //         if(si==ei) {
+        //             break;
+        //         }
+        //         if(input[i]<input[j]) {
+        //             int temp = input[j];
+        //             input[j] = input[i];
+        //             input[i] = temp;
+        //         }
+        //     }
+        // }
+        int mid = (si + ei)/2;
+        int ans[] = new int[ei-si+1];
+        int i = si;
+        int j = mid + 1;
+        int k = 0;
+        while(i<=mid && j<=ei) {
+            if(input[i]<input[j]) {
+                ans[k] = input[i];
+                i++;
+                k++;
+            }
+            else {
+                ans[k] = input[j];
+                k++;
+                j++;
+            }
+        }
+        while(i<=mid) {
+            ans[k] = input[i];
+            i++;
+            k++;
+        }
+        while(j<=ei) {
+            ans[k] = input[j];
+            j++;
+            k++;
+        }
+        
+        for(i = 0; i<ans.length; i++) {
+        	input[si + i] = ans[i];
+        }
+    }
+}

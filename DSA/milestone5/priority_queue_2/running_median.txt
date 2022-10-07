@@ -1,0 +1,54 @@
+
+import java.util.Comparator;
+import java.util.*;
+public class Solution {
+
+	public static void findMedian(int arr[])  {
+        
+        
+        /* Your class should be named Solution
+		 * Don't write main().
+		 * Don't read input, it is passed as function argument.
+		 * Return output and don't print it.
+	 	 * Taking input and printing output is handled automatically.
+        */
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+        for(int i = 0; i<arr.length; i++) {
+            if(minHeap.isEmpty() && maxHeap.isEmpty()) {
+                maxHeap.add(arr[i]);
+                System.out.print(arr[i] + " ");
+            }
+            else if(maxHeap.peek()>arr[i]) {
+                maxHeap.add(arr[i]);
+                if(maxHeap.size()-minHeap.size()>1) {
+                    minHeap.add(maxHeap.remove());
+                }
+                if(maxHeap.size()==minHeap.size()) {
+                    System.out.print((minHeap.peek()+maxHeap.peek())/2 + " ");
+                }
+                if(maxHeap.size()-minHeap.size()==1) {
+                    System.out.print(maxHeap.peek() + " ");
+                }
+                if(maxHeap.size()-minHeap.size()==-1) {
+                    System.out.print(minHeap.peek() + " ");
+                }
+            }
+            else {
+                minHeap.add(arr[i]);
+                if(minHeap.size()-maxHeap.size()>1) {
+                    maxHeap.add(minHeap.remove());
+                }
+                if(maxHeap.size()==minHeap.size()) {
+                    System.out.print((minHeap.peek()+maxHeap.peek())/2 + " ");
+                }
+                if(minHeap.size()-maxHeap.size()==1) {
+                    System.out.print(minHeap.peek() + " ");
+                }
+                if(minHeap.size()-maxHeap.size()==-1) {
+                    System.out.print(maxHeap.peek() + " ");
+                }
+            }
+        }
+    }
+}

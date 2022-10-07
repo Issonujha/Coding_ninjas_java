@@ -1,0 +1,45 @@
+public class Solution {
+	public static String getCompressedString(String str) {
+		// Write your code here
+        // int arr[] = new int[255];
+        // int count = 0;
+        // for(int i=0;i<str.length()-1;i++) {
+        //     if(str.charAt(i)==str.charAt(i+1)) {
+        //         arr[str.charAt(i)]++;
+        //     }
+        // }
+        // String new1 ="";
+        // for(int j=0; j<str.length();) {
+        //     if(arr[str.charAt(j)]>=1) {
+        //         new1 = new1+ str.charAt(j) + (arr[str.charAt(j)] + 1);
+        //         j = j + arr[str.charAt(j)] + 1;
+        //     }
+        //     else {
+        //         new1 = new1 + str.charAt(j);
+        //         j++;
+        //     }
+        // }
+        int count = 0;
+        String new1 ="";
+        for(int i=0; i<str.length()-1;i++) {
+            if(str.charAt(i) == str.charAt(i+1)) {
+                count++;
+            }
+            else if(count>=1) {
+                new1 = new1 + str.charAt(i) + (count + 1);
+                count = 0;
+            }
+            else {
+                new1 = new1 + str.charAt(i);
+            }
+            if((i+1)==str.length()-1 && count>0) {
+                new1 = new1 + str.charAt(i+1) + (count+1);
+            }
+            if((i+1)==str.length()-1 && count==0){
+        		new1 = new1 + str.charAt(str.length()-1);
+        	}
+        }
+        
+        return new1;
+	}
+}

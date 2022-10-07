@@ -1,0 +1,24 @@
+
+public class solution {
+
+	// Return the changed string
+	public static String removeX(String input){
+		// Write your code here
+        int si = 0;
+        String n = "";
+		String s = removeX(input, si, n);
+        return s;
+	}
+    public static String removeX(String input, int si, String n) {
+        String ne = "";
+        if(si == input.length()) {
+            return ne;
+        }
+        if(input.charAt(si) == 'x') {
+            return removeX(input, si+1, n);
+        }
+        n = input.charAt(si) + removeX(input, si+1, n);
+        return n;
+    }
+}
+

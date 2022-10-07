@@ -1,0 +1,54 @@
+public class Solution {
+
+/*	TreeNode class 
+ * 
+ * class TreeNode<T> {
+		T data;
+		ArrayList<TreeNode<T>> children;
+
+		TreeNode(T data){
+			this.data = data;
+			children = new ArrayList<TreeNode<T>>();
+		}
+	}*/
+
+	
+	public static int numNodeGreater(TreeNode<Integer> root,int x){
+
+		// Write your code here		
+// 		QueueUsingLL<TreeNode<Integer>> queue = new QueueUsingLL<TreeNode<Integer>> ();
+//         queue.enqueue(root);
+//         int count = 0;
+//         while(!queue.isEmpty()) {
+//             int n = queue.size();
+//             while(n>0) {
+//                 try {
+//                 TreeNode<Integer> ele = queue.dequeue();
+//                 if(ele.data>x) {
+//                     count++;
+//                 }
+//                 for(int i = 0; i<ele.children.size(); i++) {
+//                     queue.enqueue(ele.children.get(i));
+//                 }
+//                 n--;
+//                 }
+//                 catch (QueueEmptyException e) {
+                    
+//                 }
+//             }
+//         }
+//         return count;
+        if(root==null) {
+            return 0;
+        }
+        int count = 0;
+        for(int i = 0; i<root.children.size(); i++) {
+            count += numNodeGreater(root.children.get(i), x);
+        }
+        if(x<root.data) {
+            count++;
+        }
+        return count;
+	}
+	
+}

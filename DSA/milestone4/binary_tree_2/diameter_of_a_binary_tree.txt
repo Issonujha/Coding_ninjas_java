@@ -1,0 +1,65 @@
+/*
+	
+	Following is the structure used to represent the Binary Tree Node
+
+	class BinaryTreeNode<T> {
+		T data;
+		BinaryTreeNode<T> left;
+		BinaryTreeNode<T> right;
+
+		public BinaryTreeNode(T data) {
+			this.data = data;
+			this.left = null;
+			this.right = null;
+		}
+	}
+
+*/
+
+public class Solution {
+    // public static Pair<Integer, Integer> heightDiameter(BinaryTreeNode<Integer> root) {
+    //     if(root==null) {
+    //     	Pair<Integer, Integer> output = new Pair<>();
+    //         output.first = 0;
+    //         output.second = -1;
+    //         return output;
+    //     }
+    //     Pair<Integer, Integer> l = heightDiameter(root.left);
+    //     Pair<Integer, Integer> r = heightDiameter(root.right);
+    // 	int height = 1 + Math.max(l.first, r.first);
+    //     int option1 = l.first + r.first;
+    //     int option2 = l.second;
+    //     int option3 = r.second;
+    //     int diameter = Math.max(option1, Math.max(option2, option3));
+    //     Pair<Integer, Integer> output = new Pair();
+    //     output.first = height;
+    //     output.second = diameter;
+    //     return output;
+    // }
+    public static int height(BinaryTreeNode<Integer> root) {
+        if(root==null) {
+            return 0;
+        }
+        int height = 1 + Math.max(height(root.left), height(root.right));
+        return height;
+    }
+	public static int diameterOfBinaryTree(BinaryTreeNode<Integer> root){
+		//Your code goes 
+        // return 1 + heightDiameter(root).second;
+        if(root==null) {
+            return 0;
+        }
+        int lh = height(root.left);
+        int rh = height(root.right);
+        int option1 = lh + rh;
+        int option2 = diameterOfBinaryTree(root.left);
+        int option3 = diameterOfBinaryTree(root.right);
+        int diameter = Math.max(option1, Math.max(option2, option3));
+     	return 1 + diameter;   
+	}
+	
+}
+class Pair<T, V> {
+	T first;
+    V second;
+}

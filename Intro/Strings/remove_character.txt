@@ -1,0 +1,15 @@
+
+public class Solution {
+
+	public static String removeAllOccurrencesOfChar(String str, char ch) {
+		// Your code goes here
+        String new1 ="";
+        for(int i=0; i<str.length();i++) {
+            if(str.charAt(i)==ch) {
+                continue;
+            }
+        	new1 = new1 + str.charAt(i);
+        }
+        return new1;
+    }
+}

@@ -1,0 +1,38 @@
+/*
+	
+	Following is the structure used to represent the Binary Tree Node
+
+	class BinaryTreeNode<T> {
+		T data;
+		BinaryTreeNode<T> left;
+		BinaryTreeNode<T> right;
+
+		public BinaryTreeNode(T data) {
+			this.data = data;
+			this.left = null;
+			this.right = null;
+		}
+	}
+
+*/
+
+public class Solution {
+	public static void print(BinaryTreeNode<Integer> root, int k, String s) {
+        if(root==null) {
+            return;
+        }
+        // System.out.println(root.data);
+        s += root.data + " ";
+        if(root.data==k && root.left == null && root.right==null) {
+            System.out.println(s);
+            return;
+        }
+        print(root.left, k-root.data, s);
+        print(root.right, k-root.data, s);
+    }
+	public static void rootToLeafPathsSumToK(BinaryTreeNode<Integer> root, int k) {
+		//Your code goes here
+        print(root, k, "");
+	}
+
+}

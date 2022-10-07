@@ -1,0 +1,72 @@
+import java.util.*;
+
+public class Solution {
+	public static int PairSum(int[] input, int size) {
+		/* Your class should be named Solution
+		 * Don't write main().
+		 * Don't read input, it is passed as function argument.
+		 * Return output and don't print it.
+	 	 * Taking input and printing output is handled automatically.
+        */
+        int count = 0;
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for(int i = 0; i<input.length; i++) {
+            if(map.containsKey(input[i])) {
+                int j = map.get(input[i]);
+                j++;
+                map.replace(input[i], j);
+                continue;
+            }
+            map.put(input[i], 1);
+        }
+        Set<Integer> key = map.keySet();
+        for(int i:input) {
+            if(i==0) {
+            int j = 0;
+            if(map.get(-1*i)==null) {
+                j = 0;
+            }
+            else {
+            	j = map.get(-1*i);
+            }
+            
+            int l = map.get(i);
+            
+            if(l <= 0 || j <= 0) {
+                continue;
+            }
+            j--;
+            l--;
+            count += l;
+            map.put(-1*i, j);
+            map.put(i, l);
+            }
+            else {
+                int j = 0;
+            if(map.get(-1*i)==null) {
+                j = 0;
+            }
+            else {
+            	j = map.get(-1*i);
+            }
+            
+            int l = map.get(i);
+            
+            if(l <= 0 || j <= 0) {
+                continue;
+            }
+            count += j * l;
+            j = 0;
+            l = 0;
+            
+            map.put(-1*i, j);
+            map.put(i, l);
+            }
+        }
+        return count;
+	}
+    // public static int count(int j) {
+    //     int sum = 0;
+    //     for()
+    // }
+}

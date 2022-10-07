@@ -1,0 +1,46 @@
+public class Solution {
+
+	public static int minCount(int n) {
+		//Your code goes here
+        if(Math.sqrt(n)-(int)Math.sqrt(n)==0) {
+            return 1;
+        }
+        if(n<=3) {
+            return n;
+        }
+        // int res = n;
+        // for(int i = 1; i<=n; i++) {
+        //     int temp = i*i;
+        //     if(temp>n) {
+        //         break;
+        //     }
+        //     else{
+        //         res = Math.min(res, 1 + minCount(n-temp));
+        //     }
+        // }
+        // return res;
+        int []output = new int[n + 1];
+        output[0] = 0;
+        output[1] = 1;
+        output[2] = 2;
+        output[3] = 3;
+        return minCount(n, output);
+    }
+    public static int minCount(int n, int[]output) {
+        for(int i = 4; i<=n; i++) {
+            output[i] = i;
+            
+            
+            for(int k = 1; k<=Math.ceil(Math.sqrt(i)); k++) {
+                int temp = k*k;
+                if(temp>i) {
+                    break;
+                }
+                else {
+                    output[i] = Math.min(output[i], 1 + output[i-temp]);
+                }
+            }
+        }
+        return output[n];
+    }
+}

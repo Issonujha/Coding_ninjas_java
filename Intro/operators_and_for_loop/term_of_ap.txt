@@ -1,0 +1,24 @@
+import java.util.Scanner;
+public class Main {
+	
+	public static void main(String[] args) {
+		// Write your code here
+	Scanner s = new Scanner(System.in);
+        int x = s.nextInt();
+        int count = 0;
+        int N = 1;
+        while(N<=x && x>=1 && x<=1000 + count){
+            int y = 3*N + 2;
+            if(y%4==0){
+                N++;
+                x++;
+                count++;
+                continue;
+            }
+            else{
+                System.out.print(y + " ");
+                N++;
+            }
+        }
+	}
+}

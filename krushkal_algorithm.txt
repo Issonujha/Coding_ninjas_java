@@ -1,0 +1,82 @@
+import java.util.Scanner;
+import java.util.Arrays;
+
+class Edge implements Comparable<Edge>{
+	
+	int v1;
+	int v2;
+	int weight;
+	
+	Edge(int v1,int v2, int w){
+		this.v1=v1;
+		this.v2=v2;
+		this.weight=w;
+	}
+	
+	@Override
+	public int compareTo(Edge that) {
+		return this.weight-that.weight;
+	}
+	
+}
+
+public class Solution {
+    
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int V = sc.nextInt();
+		int E = sc.nextInt();
+		Edge edge[]=new Edge[E];
+
+		for(int i=0;i<E;i++) {
+			int v1=sc.nextInt();
+			int v2=sc.nextInt();
+			int weight=sc.nextInt();
+		    edge[i]= new Edge(v1,v2,weight);
+		}
+		
+        
+        Arrays.sort(edge);
+		
+		Edge MST[]=findMST(edge,V);
+		for(int i=0;i<MST.length;i++) {
+		if(MST[i].v1>MST[i].v2){
+				System.out.println(MST[i].v2+" "+MST[i].v1+" "+MST[i].weight);
+		}else{
+		System.out.println(MST[i].v1+" "+MST[i].v2+" "+MST[i].weight);
+		}
+		}
+		
+	}
+
+	private static Edge[] findMST(Edge[] edge, int v) {
+		Edge[] MST=new Edge[v-1];
+		int count =0;
+		int parent[]=new int[v];
+		for(int i=0;i<v;i++) {
+			parent[i]=i;
+		}
+		int j=0;
+		while(count!=v-1) {
+			Edge currentEdge=edge[j];
+			j++;
+			int pv1=findparent(currentEdge.v1,parent);
+			int pv2=findparent(currentEdge.v2,parent);
+			if(pv1!=pv2) {
+				MST[count]=currentEdge;
+				parent[pv1]=pv2;
+				count++;
+			}
+		}
+		return MST;
+	}
+
+	private static int findparent(int v1, int[] parent) {
+		int p=v1;
+		while(parent[p]!=p) {
+			p=parent[p];
+		}
+		return p;
+	}
+}

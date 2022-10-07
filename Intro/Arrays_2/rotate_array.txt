@@ -1,0 +1,44 @@
+
+public class Solution {  
+
+    public static void rotate(int[] arr, int d) {
+    	//Your code goes here
+		// if(d==0){
+		// return;
+		// }
+		// int k = arr.length-1;   //last element index
+		// int i = 1;				// element swaps i=1; i=2;
+		// int j =1;				// array length 
+		// int temp = arr[0];
+		// while(j<arr.length && i<=d) {
+		// arr[j-1] = arr[j];
+		// j++;
+		// if(j == arr.length) {
+		// arr[k] = temp;
+		// i++;
+		// j=1;
+		// temp = arr[0];
+		// }
+		// }
+        // int p = d-1;
+        int n = arr.length-1;
+        int temp[] = new int[d];
+        int i=0;
+        while(i<d) {
+            temp[i] = arr[i];
+            i++;
+        }
+    	i = 0;
+    	while (d <= n){
+    	arr[i] = arr[d];
+    	i = i + 1;
+    	d = d + 1;
+    	}
+        int j = 0;
+        while(i<arr.length && j<temp.length) {
+            arr[i] = temp[j];
+            i++;
+            j++;
+        }
+    }
+}

@@ -1,0 +1,28 @@
+public class Solution {
+
+	public static String removeConsecutiveDuplicates(String s) {
+		// Write your code here
+        int si = 0;
+		String n = removeConsecutiveDuplicates(s, si);
+        return n;
+	}
+	public static String removeConsecutiveDuplicates(String s, int si) {
+        String n = "";
+        if(si==s.length()) {
+            return n;
+        }
+        if(si==0) {
+            n = n + s.charAt(si);
+            n =n + removeConsecutiveDuplicates(s, si+1);
+        }
+        else if(s.charAt(si-1)==s.charAt(si)) {
+            n = n + removeConsecutiveDuplicates(s, si+1);
+            return n;
+        }
+        else {
+            n = s.charAt(si) + removeConsecutiveDuplicates(s, si+1);
+            return n;
+        }
+        return n;
+    }
+}

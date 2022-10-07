@@ -1,0 +1,23 @@
+
+public class Solution {
+
+	public static char highestOccuringChar(String str) {
+		//Your code goes here
+        int[] arr=new int[256];
+        
+        for(int i=0;i<str.length();i++)
+        {
+            arr[str.charAt(i)]++;
+        }
+
+        int max = -1;
+        char ans = ' ';
+        for(int i = 0; i < str.length(); i++){
+            if(max < arr[str.charAt(i)]) {
+                max = arr[str.charAt(i)];
+                ans = str.charAt(i);
+            }
+        }
+		return ans;
+	}
+}

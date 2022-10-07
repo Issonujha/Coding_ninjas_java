@@ -1,0 +1,28 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class Solution {
+
+	public static Queue<Integer> reverseKElements(Queue<Integer> input, int k) {
+		//Your code goes here
+        Queue <Integer> queue = new LinkedList<Integer>();
+        queue = reverseKElements(input, k, queue);
+        while(input.size()!=0) {
+            queue.add(input.poll());
+        }
+        return queue;
+	}
+    public static Queue<Integer> reverseKElements(Queue<Integer> input, int k, Queue<Integer> queue) {
+        
+        int data = input.poll();
+        k--;
+        if(k==0) {
+            queue.add(data);
+            return queue;
+        }
+        queue = reverseKElements(input, k, queue);
+        queue.add(data);
+        return queue;
+    }
+
+}

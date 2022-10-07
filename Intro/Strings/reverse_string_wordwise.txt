@@ -1,0 +1,18 @@
+public class Solution {
+	public static String reverseWordWise(String input) {
+		// Write your code here
+        String new1 = "";
+        for(int i=0; i<input.length();i++) {
+            String word = "";
+            int j = i;
+            while(j<input.length() && input.charAt(j)!=' ') {
+                word = word + input.charAt(j);
+                j++;
+            }
+            j++;
+            new1 = word + " " + new1;
+            i = j-1;
+        }
+        return new1;
+	}
+}

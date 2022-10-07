@@ -1,0 +1,31 @@
+import java.util.Scanner;
+public class Solution {
+	
+	public static int sum(int[] arr) {
+		//Your code goes here
+        int i = 1;
+        int sum1 = 0;
+        int j = arr.length;
+        for(i=0; i<j; i++){
+            sum1 = sum1 + arr[i];
+        }
+        return sum1;
+	}
+    public static void main(String[] args){
+        Scanner s = new Scanner(System.in);
+        int n = s.nextInt();
+        int e = s.nextInt();
+        int insum[] = new int[n];
+        int arr[] = new int[e];
+        for(int i=1;i<=n;i++){
+            int j =1;
+            for(j=1; j<=e; j++){
+                arr[j] = s.nextInt();
+            }
+        	insum[i] = sum(arr);
+        }
+        for(int i=1;i<=n;i++){
+            System.out.println(insum[i]);
+        }
+    }
+}

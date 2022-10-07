@@ -1,0 +1,102 @@
+import java.util.*;
+public class PQ {
+	// Complete this class
+    ArrayList<Integer> heap;
+    PQ() {
+        heap = new ArrayList<Integer>();
+    }
+	boolean isEmpty() {
+		// Implement the isEmpty() function here
+        return getSize()==0;
+	}
+
+	int getSize() {
+		// Implement the getSize() function here
+        return heap.size();
+	}
+
+	int getMax() {
+		// Implement the getMax() function here
+        if(heap.size()==0) {
+            return Integer.MAX_VALUE;
+        }
+        return heap.get(0);
+	}
+
+	void insert(int element) {
+		// Implement the insert() function here
+        heap.add(element);
+        int cIndex = heap.size()-1;
+        while(cIndex > 0) {
+            int pIndex = (cIndex - 1)/2;
+            int cElement = heap.get(cIndex);
+            int pElement = heap.get(pIndex);
+            if(pElement<cElement) {
+            	heap.set(cIndex, pElement);
+                heap.set(pIndex, cElement);
+                cIndex = pIndex;
+            }
+            else {
+                break;
+            }
+        }
+	}
+    
+	int removeMax() {
+		// Implement the removeMax() function here
+        if(isEmpty()) {
+            return Integer.MIN_VALUE;
+        }
+        int rElement = heap.get(0);
+        int last = heap.get(heap.size()-1);
+        heap.set(0, last);
+        heap.remove(heap.size()-1);
+        int pIndex = 0;
+        int lCIndex = 1;
+        int rCIndex = 2;
+        while(lCIndex < heap.size()) {
+            if(lCIndex > heap.size()-1) {
+                break;
+            }
+        	if(rCIndex > heap.size()-1) {
+                int lChild = heap.get(lCIndex);
+                int pData = heap.get(pIndex);
+                if(lChild > heap.get(pIndex)) {
+                    heap.set(pIndex, lChild);
+                    heap.set(lCIndex, pData);
+                }
+                else {
+                    break;
+                }
+                lCIndex = pIndex;
+            }
+            int leftData = heap.get(lCIndex);
+            int rightData = heap.get(rCIndex);
+            if(leftData > rightData) {
+                if(leftData > heap.get(pIndex)) {
+                    int temp = heap.get(pIndex);
+                    heap.set(pIndex, leftData);
+                    heap.set(lCIndex, temp);
+                }
+                else {
+                    break;
+                }
+                lCIndex = pIndex;
+                
+            }
+            else if(rightData > leftData) {
+                if(rightData > heap.get(pIndex)) {
+                    int temp = heap.get(pIndex);
+                    heap.set(pIndex, rightData);
+                    heap.set(rCIndex, temp);
+                }
+                else {
+                    break;
+                }
+                
+            }
+            
+        }
+        return rElement;
+	}
+}

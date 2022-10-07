@@ -1,0 +1,31 @@
+public class Solution {  
+
+    public static void pushZerosAtEnd(int[] arr) {
+    	//Your code goes here
+        int i = 0, count = 0;
+        int j = 0;
+        while(i<arr.length) {
+            if(arr[i]==0) {
+                count++;
+            }
+            i++;
+        }
+        i = 0;
+        while(i<arr.length){
+            if(arr[i] != 0) {
+                arr[j] = arr[i];
+                j++;
+            }
+            i++;
+        }
+        int k = 0;
+        int l = arr.length-1;
+        while(k<count) {
+            arr[l] = 0;
+            k++;
+            l--;
+        }
+        
+    }
+
+}

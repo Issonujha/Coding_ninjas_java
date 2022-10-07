@@ -1,0 +1,45 @@
+import java.util.*;
+public class Solution {
+	/*
+	 * BinaryTreeNode class
+	 * 
+	 * class BinaryTreeNode<T> 
+	 * { 
+	 * 		T data; 
+	 * 		BinaryTreeNode<T> left; 
+	 * 		BinaryTreeNode<T> right;
+	 *		public BinaryTreeNode(T data) 
+	 *		{
+	 *  		this.data = data; 
+	 *  	} 
+	 *  }
+	 */
+	public static void addelements(BinaryTreeNode<Integer> root, ArrayList<Integer> list) {
+        if(root==null) {
+            return;
+        }
+        list.add(root.data);
+        addelements(root.left, list);
+        addelements(root.right, list);
+    }
+	public static void printNodesSumToS(BinaryTreeNode<Integer> root, int s) {
+		// Write your code here
+        ArrayList<Integer> list = new ArrayList<>();
+        addelements(root, list);
+        Collections.sort(list);
+        for(int i = 0, j = list.size()-1; i<j; ) {
+            if(list.get(i) + list.get(j)==s) {
+                System.out.println(list.get(i) + " " + list.get(j));
+                i++;
+                j--;
+            }
+            if(list.get(i) + list.get(j)>s) {
+                j--;
+            }
+            if(list.get(i) + list.get(j)<s) {
+                i++;
+            }
+        }
+	}
+
+}

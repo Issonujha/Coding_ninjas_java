@@ -1,0 +1,59 @@
+/*
+	Note:
+	To get all the test cases accepted, make recursive calls in following order: Top, Down, Left, Right.
+	This means that if the current cell is (x, y), then order of calls should be: top cell (x-1, y), 
+	down cell (x+1, y), left cell (x, y-1) and right cell (x, y+1).
+*/  
+
+public class Solution {
+
+
+	public static void ratInAMaze(int maze[][], int n) {
+		/* 
+			* Your class should be named Solution.
+			* Write your code here
+		 */
+		int path[][] = new int[n][n];
+		int i = 0;
+		int j = 0;
+        ratAndMazePath(maze, path, i, j);
+	}
+	public static void ratAndMazePath(int[][] arr, int[][] path, int i, int j) {
+		// TODO Auto-generated method stub
+		if(i<0 || j<0 || i>=arr.length ||j>=arr.length||arr[i][j]==0||path[i][j]==1) {
+			return;
+		}
+        
+        if(i==path.length-1 && j==path.length-1 && arr[i][j]==1) {
+        	path[i][j] = 1;
+            // System.out.println("Hello");
+            for(int r = 0; r<path.length; r++) {
+                for(int c = 0; c<path.length; c++) {
+                	if(path[i][j]==1) {
+                		System.out.print(path[r][c] + " ");
+                	}
+                }
+            }
+            path[i][j] = 0;
+            System.out.println();
+            return;
+		}
+        
+		boolean opt1 = false;
+		boolean opt2 = false;
+		boolean opt3 = false;
+		boolean opt4 = false;
+        path[i][j] = 1;
+		// System.out.println(i + " " + j);
+		ratAndMazePath(arr, path, i-1, j);
+//        System.out.println();
+		ratAndMazePath(arr, path, i, j+1);
+//        System.out.println();
+		ratAndMazePath(arr, path, i+1, j);
+//        System.out.println();
+		ratAndMazePath(arr, path, i, j-1);
+//        System.out.println();
+        path[i][j] = 0;
+		
+	}
+}

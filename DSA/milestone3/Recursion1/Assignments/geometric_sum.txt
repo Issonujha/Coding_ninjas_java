@@ -1,0 +1,22 @@
+
+public class solution {
+
+	public static double findGeometricSum(int k){
+		// Write your code here
+        int i = 1;
+        double sum = 0;
+        int count = 0;
+		double d = findGeometricSum(k, i, sum, count);
+		return d;
+    }
+    public static double findGeometricSum(int k, int i, double sum, int count){
+        int pow  = 1;
+    	pow = pow * i;
+        if(count<=k) {
+            count++;
+        	sum = findGeometricSum(k, i*2, sum, count) + 1.0/pow;
+            return sum;
+        }
+        return sum;
+    }
+}

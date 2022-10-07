@@ -1,0 +1,24 @@
+
+public class Solution {
+
+	public static String removeConsecutiveDuplicates(String str) {
+		//Your code goes here
+        String new1 ="";
+        int store = 0;
+        if(str.length()==1) {
+            return str;
+        }
+        for(int i=0; i<str.length()-1;) {
+            if(str.charAt(i)==str.charAt(i+1)) {
+                store = i;
+                i++;
+                continue;
+            }
+            new1 = new1 + str.charAt(store);
+            i++;
+            store = i;
+        }
+        new1 = new1 + str.charAt(str.length()-1);
+        return new1;
+	}
+}

@@ -1,0 +1,58 @@
+public class Solution {
+	/*
+	 * BinaryTreeNode class
+	 * 
+	 * class BinaryTreeNode<T> 
+	 * { 
+	 * 		T data; 
+	 * 		BinaryTreeNode<T> left; 
+	 * 		BinaryTreeNode<T> right;
+	 *		public BinaryTreeNode(T data) 
+	 *		{
+	 *  		this.data = data; 
+	 *  	} 
+	 *  }
+	 */
+	public static large largestBST(BinaryTreeNode<Integer> root) {
+        if(root==null) {
+            large l1 = new large();
+            l1.min = Integer.MAX_VALUE;
+            l1.max = Integer.MIN_VALUE;
+            l1.isBst = true;
+            l1.height = 0;
+            return l1;
+        }
+        large left = largestBST(root.left);
+        large right = largestBST(root.right);
+    	large output = new large();
+        output.min = Math.min(left.min, Math.min(right.min, root.data));
+        output.max = Math.max(left.max, Math.max(right.max, root.data));
+		if(left.max<root.data && right.min>root.data && left.isBst && right.isBst) {
+            output.isBst = true;
+        }
+        else {
+            output.isBst = false;
+        }
+        if(left.isBst && right.isBst && output.isBst) {
+            output.height = Math.max(left.height, right.height) + 1;
+            return output;
+        }
+        else {
+            // System.out.println("Hello");
+            output.height = Math.max(left.height, right.height);
+        }
+    	return output;
+    }
+	public static int largestBSTSubtree(BinaryTreeNode<Integer> root) {
+		// Write your code here
+        large l1 = largestBST(root);
+        return l1.height;
+	}
+
+}
+class large {
+    int min;
+    int max;
+    boolean isBst;
+    int height;
+}

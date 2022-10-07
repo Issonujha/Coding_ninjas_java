@@ -1,0 +1,26 @@
+
+public class solution {
+
+	// Return the updated string
+	public static String addStars(String s) {
+		// Write your code here
+		int si = 0;
+        String n = addStars(s, si);
+        return n;
+    }
+    public static String addStars(String s, int si) {
+        String so = "";
+        if(si == s.length()-1) {
+            return so + s.charAt(si);
+        }
+        char c ='*';
+        if(si>=0) {
+            if(s.charAt(si) == s.charAt(si+1)) {
+                so = s.charAt(si) + "*" + addStars(s, si+1);
+                return so;
+            }
+            so = s.charAt(si) + addStars(s, si+1);
+        }
+        return so;
+    }
+}

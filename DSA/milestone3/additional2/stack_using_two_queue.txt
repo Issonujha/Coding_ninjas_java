@@ -1,0 +1,61 @@
+import java.util.*;
+public class Stack {
+
+    //Define the data members
+	Queue<Integer> first;
+	Queue<Integer> second;
+    int size;
+    
+    public Stack() {
+        //Implement the Constructor
+        first = new LinkedList<Integer>();
+        second = new LinkedList<Integer>();
+        size = 0;
+    }
+
+
+
+    /*----------------- Public Functions of Stack -----------------*/
+
+
+    public int getSize() { 
+        //Implement the getSize() function
+        return size;
+    }
+
+    public boolean isEmpty() {
+        //Implement the isEmpty() function
+        return (size==0);
+    }
+
+    public void push(int element) {
+        //Implement the push(element) function
+        second.add(element);
+        while(!first.isEmpty()) {
+            second.add(first.peek());
+            first.remove();
+        }
+        Queue<Integer> q = first;
+        first = second;
+        second = q;
+        size++;
+    }
+
+    public int pop() {
+        //Implement the pop() function
+        if(first.isEmpty()) {
+            return -1;
+        }
+        int num = first.remove();
+        size--;
+        return num;
+    }
+
+    public int top() {
+        //Implement the top() function
+        if(first.isEmpty()) {
+            return -1;
+        }
+        return first.peek();
+    }
+}
